@@ -1,12 +1,12 @@
-const got =  require("got")
+const got = require('got');
 
-const ChatBot= (req, res) => {
+const BotQuest = (Human) => {
     (async () => {
 
 // const human = req.body 
 
         
-const chatLog = `Human: hi how are u\nAI: I am doing great. How can I help you today?\n`;
+const chatLog = `Human: ${human}\nAI: I am doing great. How can I help you today?\n`;
 
 const question = req.body;
 
@@ -34,5 +34,3 @@ const question = req.body;
 })();
 }
     
-
-module.exports = {ChatBot}
