@@ -1,6 +1,4 @@
-const express = require("express")
-// const Bot = require("../controller/botController")
-const router = express()
-// router.post("/get", Bot.BotQuest)
-
+const router = require("express").Router()
+const controller =  require('../controller/botController') 
+router.post("/chat", controller.botController)
 module.exports = router

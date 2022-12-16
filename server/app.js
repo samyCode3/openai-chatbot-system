@@ -1,13 +1,14 @@
 const express = require("express")
-const RouterBot = require("../src/route/routes")
 const app = express()
-
+const control = require("../src/route/routes")
+const {ErrorHandler} = require('../error/errorHandler')
 const PORT = process.env.PORT
 app.use(express.json())
 
 app.get("/", (req, res) => {
     res.send("This is my AI space")
 })
+app.use("/api/v1", control)
 app.use((req, res, next)  => {
     if(res.status(404)) 
     {
@@ -15,7 +16,7 @@ app.use((req, res, next)  => {
     }
     next()
 })
+app.use(ErrorHandler)
 
-app.use("/", RouterBot)
 
 app.listen(PORT, console.log(`server running on port ${PORT}`))
