@@ -20,7 +20,6 @@ const RegisterUser = tryAndCatch(async (req, res) => {
 
   }
 });
-
 const LoginUser = tryAndCatch( async (req, res) => {
        const {error, value} = LoginValidate.LoginValidation(req.body)
        if(error) {
@@ -42,6 +41,6 @@ const LoginUser = tryAndCatch( async (req, res) => {
 
        }
 
-       
+
 })
 module.exports = { RegisterUser, LoginUser };
