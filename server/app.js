@@ -2,6 +2,8 @@ const express = require("express");
 const app = express();
 const control = require("../src/route/routes");
 const { ErrorHandler } = require("../error/errorHandler");
+const {AuthUser}  = require("./../middleware/auth")
+const botRouter  =  require('../src/route/botRouter')
 const mongoose = require("mongoose");
 const cors = require("cors");
 const PORT = process.env.PORT;
@@ -23,12 +25,17 @@ app.use(
   })
 );
 app.use("/api/v1", control);
+app.use(AuthUser)
+app.use("/api/v1", botRouter);
+
+
 app.use((req, res, next) => {
   if (res.status(404)) {
     return res.send("When you are trying to get what u don't have ");
   }
   next();
 });
+
 app.use(ErrorHandler);
 
 app.listen(PORT, console.log(`server running on port ${PORT}`));
